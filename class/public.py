@@ -1078,7 +1078,7 @@ def get_uuid():
 
 
 #进程是否存在
-def process_exists(pname,exe = None,cmdline = None):
+def process_exists(pname,exe = None):
     try:
         import psutil
         pids = psutil.pids()
@@ -1086,13 +1086,10 @@ def process_exists(pname,exe = None,cmdline = None):
             try:
                 p = psutil.Process(pid)
                 if p.name() == pname: 
-                    if not exe and not cmdline:
+                    if not exe:
                         return True;
                     else:
-                        if exe:
-                            if p.exe() == exe: return True
-                        if cmdline:
-                            if cmdline in  p.cmdline(): return True
+                        if p.exe() == exe: return True
             except:pass
         return False
     except: return True

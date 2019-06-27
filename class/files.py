@@ -1097,8 +1097,7 @@ cd %s
     def GetExecShellMsg(self,get):
         fileName = '/tmp/panelShell.pl';
         if not os.path.exists(fileName): return 'FILE_SHELL_EMPTY';
-        status = not public.process_exists('bash',None,'/tmp/panelShell.sh')
-        return public.returnMsg(status,public.GetNumLines(fileName,200));
+        return public.readFile('/tmp/panelShell.pl');
     
     #文件搜索
     def GetSearch(self,get):
